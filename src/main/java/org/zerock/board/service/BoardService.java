@@ -2,16 +2,23 @@ package org.zerock.board.service;
 
 
 import org.zerock.board.dto.BoardDTO;
+import org.zerock.board.dto.BoardListDTO;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Member;
 
+import java.util.List;
+
 public interface BoardService {
 
-    Long register(BoardDTO dto);
+    Long create(BoardDTO dto);
 
-    //void modify(BoardDTO boardDTO);
+    boolean modify(BoardDTO dto);
 
-    default Board dtoToEntity(BoardDTO dto){
+    boolean removeById(Long id);
+
+    List<BoardListDTO> getList(String title);
+
+    default Board dtoToEntity(BoardDTO dto) {
 
         Member member = Member.builder().email(dto.getWriterEmail()).build();
 

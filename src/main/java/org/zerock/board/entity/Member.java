@@ -1,10 +1,11 @@
 package org.zerock.board.entity;
 
 
+import lombok.*;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import lombok.*;
 
 
 @Entity

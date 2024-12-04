@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BoardDTO {
+public class BoardSearchDTO {
 
     private Long bno;
 
@@ -25,4 +25,8 @@ public class BoardDTO {
     private LocalDateTime regDate;
 
     private LocalDateTime modDate;
+
+    private int replyCount; //해당 게시글의 댓글 수
+
+
 }
