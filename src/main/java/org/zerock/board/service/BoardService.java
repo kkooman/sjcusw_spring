@@ -18,6 +18,8 @@ public interface BoardService {
 
     List<BoardListDTO> getList(String title);
 
+    BoardDTO get(Long id);
+
     default Board dtoToEntity(BoardDTO dto) {
 
         Member member = Member.builder().email(dto.getWriterEmail()).build();
@@ -29,22 +31,5 @@ public interface BoardService {
                 .writer(member)
                 .build();
         return board;
-    }
-
-    default BoardDTO entityToDTO(Board board, Member member, Long replyCount) {
-
-        BoardDTO boardDTO = BoardDTO.builder()
-                .bno(board.getBno())
-                .title(board.getTitle())
-                .content(board.getContent())
-                .regDate(board.getRegDate())
-                .modDate(board.getModDate())
-                .writerEmail(member.getEmail())
-                .writerName(member.getName())
-                .replyCount(replyCount.intValue()) //int로 처리하도록
-                .build();
-
-        return boardDTO;
-
     }
 }

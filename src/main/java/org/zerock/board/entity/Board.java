@@ -1,6 +1,7 @@
 package org.zerock.board.entity;
 
 import lombok.*;
+import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.BoardListDTO;
 
 import javax.persistence.*;
@@ -28,12 +29,20 @@ public class Board extends BaseEntity {
     private Member writer;
 
 
-    public BoardListDTO toDTO() {
+    public BoardListDTO toListDTO() {
 
         BoardListDTO dto = new BoardListDTO();
         dto.setBno(bno);
         dto.setTitle(title);
         dto.setWriter(writer.getName());
+        return dto;
+    }
+
+    public BoardDTO toDTO() {
+
+        BoardDTO dto = new BoardDTO();
+        dto.setBno(bno);
+        dto.setTitle(title);
         return dto;
     }
 }

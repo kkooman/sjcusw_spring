@@ -62,6 +62,11 @@ public class BoardServiceImpl implements BoardService {
     public List<BoardListDTO> getList(String title) {
         log.info("title param : {}", title);
         List<Board> list = repository.findByTitleLike(title);
-        return list.stream().map(Board::toDTO).collect(Collectors.toList());
+        return list.stream().map(Board::toListDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public BoardDTO get(Long id) {
+        return repository.findById(id).map(Board::toDTO).orElseThrow();
     }
 }
