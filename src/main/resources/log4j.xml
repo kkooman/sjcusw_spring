@@ -3,13 +3,13 @@
 
     <Appenders>
         <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%-5p: %c - %m%n" />
+            <PatternLayout pattern="%-5p: %c - %m%n"/>
         </Console>
     </Appenders>
 
     <Loggers>
         <Root level="INFO">
-            <AppenderRef ref="console" />
+            <AppenderRef ref="console"/>
         </Root>
     </Loggers>
 

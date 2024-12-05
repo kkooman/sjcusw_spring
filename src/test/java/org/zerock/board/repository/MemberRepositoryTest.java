@@ -1,26 +1,26 @@
 package org.zerock.board.repository;
 
 
-import java.util.stream.IntStream;
-
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.zerock.board.entity.Member;
 
+import java.util.stream.IntStream;
+
 
 @SpringBootTest
 @EnableJpaAuditing
 public class MemberRepositoryTest {
-	
-	@Autowired
+
+    @Autowired
     private MemberRepository memberRepository;
 
     @Test
-    public void insertDummies(){
+    public void insertDummies() {
 
-    	IntStream.rangeClosed(1, 100).forEach(i -> {
+        IntStream.rangeClosed(1, 100).forEach(i -> {
 
             Member member = Member.builder()
                     .email("user" + i + "@aaa.com")

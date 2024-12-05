@@ -66,7 +66,7 @@ public class BoardServiceImpl implements BoardService {
         log.info("title param : {}", pageRequestDTO);
 
         QBoard board = QBoard.board;
-        if(pageRequestDTO.getKeyword() == null) {
+        if (pageRequestDTO.getKeyword() == null) {
             pageRequestDTO.setKeyword("");
         }
         Iterable<Board> list = repository.findAll(board.title.contains(pageRequestDTO.getKeyword()));

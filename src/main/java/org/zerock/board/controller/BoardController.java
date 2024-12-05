@@ -8,13 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.board.dto.BoardDTO;
-import org.zerock.board.dto.BoardListDTO;
 import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.dto.PageResultDTO;
 import org.zerock.board.repository.MemberRepository;
 import org.zerock.board.service.BoardService;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -22,10 +19,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class BoardController {
 
+    private static final String DUMMY_LOGINED_USER = "hong@sjcusw.ac.kr";
     private final BoardService boardService;
     private final MemberRepository mmemberRepository;
-
-    private static final String DUMMY_LOGINED_USER = "hong@sjcusw.ac.kr";
 
     @GetMapping("/list")
     public String list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
@@ -40,7 +36,7 @@ public class BoardController {
     @GetMapping("/{id}")
     public String get(@RequestParam Long id, Model model) {
 
-        model.addAttribute("id", boardService.get(id));
+        model.addAttribute("board", boardService.get(id));
         return "board/read";
     }
 
@@ -56,6 +52,13 @@ public class BoardController {
 
         redirectAttributes.addAttribute("id", boardService.create(dto));
         return "redirect:/board/list";
+    }
+
+    @GetMapping("/modify")
+    public String modify(@RequestParam Long id, Model model) {
+
+        model.addAttribute("board", boardService.get(id));
+        return "board/register";
     }
 
     @PostMapping("/modify")

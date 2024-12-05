@@ -8,19 +8,20 @@
         <h1 class="mt-4">Board List Page
             <span>
                 <a th:href="@{/board/register}">
-                    <button type="button" class="btn btn-outline-primary">글 등록
+                    <button class="btn btn-outline-primary" type="button">글 등록
                     </button>
                 </a>
             </span>
         </h1>
 
 
-        <form action="/board/list" method="get" id="searchForm">
+        <form action="/board/list" id="searchForm" method="get">
             <div class="input-group">
-                <input type="hidden" name="page" value="1">
+                <input name="page" type="hidden" value="1">
                 <div class="input-group-prepend">
                     <select class="custom-select" name="type">
-                        <option value="t" th:selected="${pageRequestDTO.type == null or pageRequestDTO.type =='t'}">제목</option>
+                        <option th:selected="${pageRequestDTO.type == null or pageRequestDTO.type =='t'}" value="t">제목
+                        </option>
                     </select>
                 </div>
                 <input class="form-control" name="keyword" th:value="${pageRequestDTO.keyword}">

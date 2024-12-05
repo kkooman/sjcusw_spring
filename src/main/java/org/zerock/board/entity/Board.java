@@ -28,6 +28,17 @@ public class Board extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Member writer;
 
+    public static Board of(BoardDTO dto) {
+
+        Member member = Member.builder().email(dto.getWriterEmail()).build();
+
+        return Board.builder()
+                .bno(dto.getBno())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .writer(member)
+                .build();
+    }
 
     public BoardListDTO toListDTO() {
 
@@ -46,18 +57,6 @@ public class Board extends BaseEntity {
         dto.setBno(bno);
         dto.setTitle(title);
         return dto;
-    }
-
-    public static Board of(BoardDTO dto) {
-
-        Member member = Member.builder().email(dto.getWriterEmail()).build();
-
-        return Board.builder()
-                .bno(dto.getBno())
-                .title(dto.getTitle())
-                .content(dto.getContent())
-                .writer(member)
-                .build();
     }
 }
 

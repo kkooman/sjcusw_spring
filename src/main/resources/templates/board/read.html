@@ -8,43 +8,45 @@
         <h1 class="mt-4">Board Read Page</h1>
 
         <div class="form-group">
-            <label >Bno</label>
-            <input type="text" class="form-control" name="gno" th:value="${dto.bno}" readonly >
+            <label>Bno</label>
+            <input class="form-control" name="gno" readonly th:value="${dto.bno}" type="text">
         </div>
 
         <div class="form-group">
-            <label >Title</label>
-            <input type="text" class="form-control" name="title" th:value="${dto.title}" readonly >
+            <label>Title</label>
+            <input class="form-control" name="title" readonly th:value="${dto.title}" type="text">
         </div>
         <div class="form-group">
-            <label >Content</label>
-            <textarea class="form-control" rows="5" name="content" readonly>[[${dto.content}]]</textarea>
+            <label>Content</label>
+            <textarea class="form-control" name="content" readonly rows="5">[[${dto.content}]]</textarea>
         </div>
         <div class="form-group">
-            <label >Writer</label>
-            <input type="text" class="form-control" name="writer" th:value="${dto.writerName}" readonly>
+            <label>Writer</label>
+            <input class="form-control" name="writer" readonly th:value="${dto.writerName}" type="text">
         </div>
         <div class="form-group">
-            <label >RegDate</label>
-            <input type="text" class="form-control" name="regDate" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            <label>RegDate</label>
+            <input class="form-control" name="regDate" readonly
+                   th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
         </div>
         <div class="form-group">
-            <label >ModDate</label>
-            <input type="text" class="form-control" name="modDate" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+            <label>ModDate</label>
+            <input class="form-control" name="modDate" readonly
+                   th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
         </div>
 
         <a th:href="@{/board/modify(bno = ${dto.bno}, page=${requestDTO.page}, type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
-            <button type="button" class="btn btn-primary">Modify</button>
+            <button class="btn btn-primary" type="button">Modify</button>
         </a>
 
         <a th:href="@{/board/list(page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
-            <button type="button" class="btn btn-info">List</button>
+            <button class="btn btn-info" type="button">List</button>
         </a>
 
-        <div >
+        <div>
             <div class="mt-4">
-                <h5 ><span class="badge badge-info addReply">Add Reply</span> </h5>
-                <h5 ><span class="badge badge-secondary replyCount"> Reply Count  [[${dto.replyCount}]]</span> </h5>
+                <h5><span class="badge badge-info addReply">Add Reply</span></h5>
+                <h5><span class="badge badge-secondary replyCount"> Reply Count  [[${dto.replyCount}]]</span></h5>
             </div>
             <div class="list-group replyList">
 
@@ -52,31 +54,31 @@
         </div>
 
 
-
-        <div class="modal" tabindex="-1" role="dialog">
+        <div class="modal" role="dialog" tabindex="-1">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Modal title</h5>
 
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <button aria-label="Close" class="close" data-dismiss="modal" type="button">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <input class="form-control"  type="text" name="replyText" placeholder="Reply Text...">
+                            <input class="form-control" name="replyText" placeholder="Reply Text..." type="text">
                         </div>
                         <div class="form-group">
-                            <input class="form-control"  type="text" name="replyer" placeholder="Replyer">
-                            <input type="hidden" name="rno" >
+                            <input class="form-control" name="replyer" placeholder="Replyer" type="text">
+                            <input name="rno" type="hidden">
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger replyRemove">Remove</button>
-                        <button type="button" class="btn btn-warning replyModify">Modify</button>
-                        <button type="button" class="btn btn-primary replySave">Save</button>
-                        <button type="button" class="btn btn-outline-secondary replyClose" data-dismiss="modal">Close</button>
+                        <button class="btn btn-danger replyRemove" type="button">Remove</button>
+                        <button class="btn btn-warning replyModify" type="button">Modify</button>
+                        <button class="btn btn-primary replySave" type="button">Save</button>
+                        <button class="btn btn-outline-secondary replyClose" data-dismiss="modal" type="button">Close
+                        </button>
                     </div>
                 </div>
             </div>

@@ -9,45 +9,41 @@
 
         <form action="/board/modify" method="post">
 
-            <!--페이지 번호  -->
-            <input type="hidden" name="page" th:value="${requestDTO.page}">
-            <input type="hidden" name="type" th:value="${requestDTO.type}" >
-            <input type="hidden" name="keyword" th:value="${requestDTO.keyword}" >
-
-
             <div class="form-group">
-                <label >Bno</label>
-                <input type="text" class="form-control" name="bno" th:value="${dto.bno}" readonly >
+                <label>Bno</label>
+                <input class="form-control" name="bno" readonly th:value="${dto.bno}" type="text">
             </div>
 
             <div class="form-group">
                 <label>Title</label>
-                <input type="text" class="form-control" name="title" th:value="${dto.title}" >
+                <input class="form-control" name="title" th:value="${dto.title}" type="text">
             </div>
             <div class="form-group">
-                <label >Content</label>
-                <textarea class="form-control" rows="5" name="content">[[${dto.content}]]</textarea>
+                <label>Content</label>
+                <textarea class="form-control" name="content" rows="5">[[${dto.content}]]</textarea>
             </div>
             <div class="form-group">
-                <label >Writer</label>
-                <input type="text" class="form-control" name="writer" th:value="${dto.writerEmail}" readonly>
+                <label>Writer</label>
+                <input class="form-control" name="writer" readonly th:value="${dto.writerEmail}" type="text">
             </div>
             <div class="form-group">
-                <label >RegDate</label>
-                <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <label>RegDate</label>
+                <input class="form-control" readonly
+                       th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
             </div>
             <div class="form-group">
-                <label >ModDate</label>
-                <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+                <label>ModDate</label>
+                <input class="form-control" readonly
+                       th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
             </div>
 
         </form>
 
-        <button type="button" class="btn btn-primary modifyBtn">Modify</button>
+        <button class="btn btn-primary modifyBtn" type="button">Modify</button>
 
-        <button type="button" class="btn btn-info listBtn">List</button>
+        <button class="btn btn-info listBtn" type="button">List</button>
 
-        <button type="button" class="btn btn-danger removeBtn">Remove</button>
+        <button class="btn btn-danger removeBtn" type="button">Remove</button>
 
         <script th:inline="javascript">
 
