@@ -3,6 +3,7 @@ package org.zerock.board.service;
 
 import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.BoardListDTO;
+import org.zerock.board.dto.PageRequestDTO;
 import org.zerock.board.entity.Board;
 import org.zerock.board.entity.Member;
 
@@ -16,20 +17,7 @@ public interface BoardService {
 
     boolean removeById(Long id);
 
-    List<BoardListDTO> getList(String title);
+    List<BoardListDTO> getList(PageRequestDTO pageRequestDTO);
 
     BoardDTO get(Long id);
-
-    default Board dtoToEntity(BoardDTO dto) {
-
-        Member member = Member.builder().email(dto.getWriterEmail()).build();
-
-        Board board = Board.builder()
-                .bno(dto.getBno())
-                .title(dto.getTitle())
-                .content(dto.getContent())
-                .writer(member)
-                .build();
-        return board;
-    }
 }

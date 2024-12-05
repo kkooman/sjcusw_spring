@@ -2,12 +2,14 @@ package org.zerock.board;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+@EnableJpaAuditing
 @SpringBootApplication
-public class Chap13Application {
+public class BoardApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Chap13Application.class, args);
+        SpringApplication.run(BoardApplication.class, args);
     }
 
 }

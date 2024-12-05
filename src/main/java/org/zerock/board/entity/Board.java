@@ -34,7 +34,9 @@ public class Board extends BaseEntity {
         BoardListDTO dto = new BoardListDTO();
         dto.setBno(bno);
         dto.setTitle(title);
-        dto.setWriter(writer.getName());
+        dto.setWriterName(writer.getName());
+        dto.setWriterEmail(writer.getEmail());
+        dto.setRegDate(getRegDate());
         return dto;
     }
 
@@ -44,6 +46,18 @@ public class Board extends BaseEntity {
         dto.setBno(bno);
         dto.setTitle(title);
         return dto;
+    }
+
+    public static Board of(BoardDTO dto) {
+
+        Member member = Member.builder().email(dto.getWriterEmail()).build();
+
+        return Board.builder()
+                .bno(dto.getBno())
+                .title(dto.getTitle())
+                .content(dto.getContent())
+                .writer(member)
+                .build();
     }
 }
 

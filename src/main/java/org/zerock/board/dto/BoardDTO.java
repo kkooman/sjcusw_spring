@@ -2,6 +2,8 @@ package org.zerock.board.dto;
 
 
 import lombok.*;
+import org.zerock.board.entity.Board;
+import org.zerock.board.entity.Member;
 
 import java.time.LocalDateTime;
 
@@ -25,4 +27,5 @@ public class BoardDTO {
     private LocalDateTime regDate;
 
     private LocalDateTime modDate;
+
 }

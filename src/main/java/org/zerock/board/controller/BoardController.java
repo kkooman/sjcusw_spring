@@ -5,13 +5,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.board.dto.BoardDTO;
+import org.zerock.board.dto.BoardListDTO;
+import org.zerock.board.dto.PageRequestDTO;
+import org.zerock.board.dto.PageResultDTO;
+import org.zerock.board.repository.MemberRepository;
 import org.zerock.board.service.BoardService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/board")
@@ -20,22 +23,35 @@ import org.zerock.board.service.BoardService;
 public class BoardController {
 
     private final BoardService boardService;
+    private final MemberRepository mmemberRepository;
+
+    private static final String DUMMY_LOGINED_USER = "hong@sjcusw.ac.kr";
 
     @GetMapping("/list")
-    public String list(@RequestParam(required = false) String title, Model model) {
+    public String list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
 
-        model.addAttribute("list", boardService.getList(title));
-        return "list";
+        PageResultDTO result = new PageResultDTO();
+        result.setDtoList(boardService.getList(pageRequestDTO));
+
+        model.addAttribute("result", result);
+        return "board/list";
     }
 
     @GetMapping("/{id}")
-    public String get(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+    public String get(@RequestParam Long id, Model model) {
 
-        redirectAttributes.addAttribute("id", boardService.get(id));
-        return "redirect:/board/list";
+        model.addAttribute("id", boardService.get(id));
+        return "board/read";
     }
 
-    @PostMapping("/create")
+    @GetMapping("/register")
+    public String register(Model model) {
+
+        model.addAttribute("member", mmemberRepository.findById(DUMMY_LOGINED_USER).orElseThrow());
+        return "board/register";
+    }
+
+    @PostMapping("/register")
     public String create(BoardDTO dto, RedirectAttributes redirectAttributes) {
 
         redirectAttributes.addAttribute("id", boardService.create(dto));
