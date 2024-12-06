@@ -1,8 +1,10 @@
 package org.zerock.board.service;
 
 
+import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.BoardListDTO;
@@ -34,7 +36,8 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public boolean modify(BoardDTO dto) {
-        log.info(dto);
+
+        log.debug("modify board : {}", dto);
 
         try {
             Board board = repository.findById(dto.getBno()).orElseThrow();
@@ -69,7 +72,23 @@ public class BoardServiceImpl implements BoardService {
         if (pageRequestDTO.getKeyword() == null) {
             pageRequestDTO.setKeyword("");
         }
-        Iterable<Board> list = repository.findAll(board.title.contains(pageRequestDTO.getKeyword()));
+
+        BooleanBuilder booleanBuilder = new BooleanBuilder();
+
+        if (StringUtils.isNotEmpty(pageRequestDTO.getKeyword())) {
+            if (StringUtils.isBlank(pageRequestDTO.getType())) {
+                pageRequestDTO.setType("t");
+            }
+
+            if ("t".equals(pageRequestDTO.getType())) {
+                booleanBuilder.and(board.title.contains(pageRequestDTO.getKeyword()));
+            }
+            if ("c".equals(pageRequestDTO.getType())) {
+                booleanBuilder.and(board.content.contains(pageRequestDTO.getKeyword()));
+            }
+        }
+
+        Iterable<Board> list = repository.findAll(booleanBuilder);
         return StreamSupport.stream(list.spliterator(), false).map(Board::toListDTO).collect(Collectors.toList());
     }
 

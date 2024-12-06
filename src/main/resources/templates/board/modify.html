@@ -40,9 +40,7 @@
         </form>
 
         <button class="btn btn-primary modifyBtn" type="button">Modify</button>
-
         <button class="btn btn-info listBtn" type="button">List</button>
-
         <button class="btn btn-danger removeBtn" type="button">Remove</button>
 
         <script th:inline="javascript">
@@ -73,7 +71,6 @@
 
             $(".listBtn").click(function() {
 
-                //var pageInfo = $("input[name='page']");
                 var page = $("input[name='page']");
                 var type = $("input[name='type']");
                 var keyword = $("input[name='keyword']");
@@ -83,7 +80,6 @@
                 actionForm.append(page);
                 actionForm.append(type);
                 actionForm.append(keyword);
-
 
                 actionForm
                     .attr("action", "/board/list")

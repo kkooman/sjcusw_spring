@@ -56,6 +56,10 @@ public class Board extends BaseEntity {
         BoardDTO dto = new BoardDTO();
         dto.setBno(bno);
         dto.setTitle(title);
+        dto.setWriterName(writer.getName());
+        dto.setWriterEmail(writer.getEmail());
+        dto.setRegDate(getRegDate());
+        dto.setModDate(getModDate());
         return dto;
     }
 }

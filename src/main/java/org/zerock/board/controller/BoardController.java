@@ -19,7 +19,7 @@ import org.zerock.board.service.BoardService;
 @RequiredArgsConstructor
 public class BoardController {
 
-    private static final String DUMMY_LOGINED_USER = "hong@sjcusw.ac.kr";
+    private static final String DUMMY_LOGIN_USER = "hong@sjcusw.ac.kr";
     private final BoardService boardService;
     private final MemberRepository mmemberRepository;
 
@@ -43,7 +43,7 @@ public class BoardController {
     @GetMapping("/register")
     public String register(Model model) {
 
-        model.addAttribute("member", mmemberRepository.findById(DUMMY_LOGINED_USER).orElseThrow());
+        model.addAttribute("member", mmemberRepository.findById(DUMMY_LOGIN_USER).orElseThrow());
         return "board/register";
     }
 
@@ -57,8 +57,8 @@ public class BoardController {
     @GetMapping("/modify")
     public String modify(@RequestParam Long id, Model model) {
 
-        model.addAttribute("board", boardService.get(id));
-        return "board/register";
+        model.addAttribute("dto", boardService.get(id));
+        return "board/modify";
     }
 
     @PostMapping("/modify")
