@@ -33,10 +33,10 @@ public class BoardController {
         return "board/list";
     }
 
-    @GetMapping("/{id}")
-    public String get(@RequestParam Long id, Model model) {
+    @GetMapping("/read")
+    public String get(@RequestParam Long bno, Model model) {
 
-        model.addAttribute("board", boardService.get(id));
+        model.addAttribute("dto", boardService.get(bno));
         return "board/read";
     }
 
@@ -50,14 +50,14 @@ public class BoardController {
     @PostMapping("/register")
     public String create(BoardDTO dto, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addAttribute("id", boardService.create(dto));
+        redirectAttributes.addAttribute("bno", boardService.create(dto));
         return "redirect:/board/list";
     }
 
     @GetMapping("/modify")
-    public String modify(@RequestParam Long id, Model model) {
+    public String modify(@RequestParam Long bno, Model model) {
 
-        model.addAttribute("dto", boardService.get(id));
+        model.addAttribute("dto", boardService.get(bno));
         return "board/modify";
     }
 
@@ -69,9 +69,9 @@ public class BoardController {
     }
 
     @PostMapping("/remove")
-    public String remove(@RequestParam Long id, RedirectAttributes redirectAttributes) {
+    public String remove(@RequestParam Long bno, RedirectAttributes redirectAttributes) {
 
-        redirectAttributes.addAttribute("result", boardService.removeById(id));
+        redirectAttributes.addAttribute("result", boardService.removeById(bno));
         return "redirect:/board/list";
     }
 }

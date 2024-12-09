@@ -35,24 +35,13 @@
                    th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
         </div>
 
-        <a th:href="@{/board/modify(bno = ${dto.bno}, page=${requestDTO.page}, type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+        <a th:href="@{/board/modify(bno = ${dto.bno})}">
             <button class="btn btn-primary" type="button">Modify</button>
         </a>
 
-        <a th:href="@{/board/list(page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
+        <a th:href="@{/board/list}">
             <button class="btn btn-info" type="button">List</button>
         </a>
-
-        <div>
-            <div class="mt-4">
-                <h5><span class="badge badge-info addReply">Add Reply</span></h5>
-                <h5><span class="badge badge-secondary replyCount"> Reply Count  [[${dto.replyCount}]]</span></h5>
-            </div>
-            <div class="list-group replyList">
-
-            </div>
-        </div>
-
 
         <div class="modal" role="dialog" tabindex="-1">
             <div class="modal-dialog" role="document">

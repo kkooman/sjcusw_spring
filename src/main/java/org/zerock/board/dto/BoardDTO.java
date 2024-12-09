@@ -26,4 +26,6 @@ public class BoardDTO {
 
     private LocalDateTime modDate;
 
+    private int replyCount;
+
 }

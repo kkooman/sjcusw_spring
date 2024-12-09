@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.board.dto.BoardDTO;
 import org.zerock.board.dto.BoardListDTO;
 import org.zerock.board.dto.PageRequestDTO;
@@ -24,6 +25,7 @@ public class BoardServiceImpl implements BoardService {
 
     private final BoardRepository repository;
 
+    @Transactional
     @Override
     public Long create(BoardDTO dto) {
 
@@ -34,6 +36,7 @@ public class BoardServiceImpl implements BoardService {
         return board.getBno();
     }
 
+    @Transactional
     @Override
     public boolean modify(BoardDTO dto) {
 
@@ -51,6 +54,7 @@ public class BoardServiceImpl implements BoardService {
         return false;
     }
 
+    @Transactional
     @Override
     public boolean removeById(Long id) {
         log.info("remove id : {}", id);
