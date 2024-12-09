@@ -35,11 +35,11 @@
                    th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" type="text">
         </div>
 
-        <a th:href="@{/board/modify(bno = ${dto.bno})}">
+        <a th:href="@{/board/modify(bno = ${dto.bno}, page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
             <button class="btn btn-primary" type="button">Modify</button>
         </a>
 
-        <a th:href="@{/board/list}">
+        <a th:href="@{/board/list(page=${requestDTO.page} , type=${requestDTO.type}, keyword =${requestDTO.keyword})}">
             <button class="btn btn-info" type="button">List</button>
         </a>
 

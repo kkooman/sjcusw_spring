@@ -1,13 +1,12 @@
 package org.zerock.board.entity;
 
-import com.querydsl.core.types.Path;
+import static com.querydsl.core.types.PathMetadataFactory.*;
+
+import com.querydsl.core.types.dsl.*;
+
 import com.querydsl.core.types.PathMetadata;
-import com.querydsl.core.types.dsl.DateTimePath;
-import com.querydsl.core.types.dsl.EntityPathBase;
-
 import javax.annotation.processing.Generated;
-
-import static com.querydsl.core.types.PathMetadataFactory.forVariable;
+import com.querydsl.core.types.Path;
 
 
 /**
@@ -16,8 +15,10 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultSupertypeSerializer")
 public class QBaseEntity extends EntityPathBase<BaseEntity> {
 
-    public static final QBaseEntity baseEntity = new QBaseEntity("baseEntity");
     private static final long serialVersionUID = 499605891L;
+
+    public static final QBaseEntity baseEntity = new QBaseEntity("baseEntity");
+
     public final DateTimePath<java.time.LocalDateTime> modDate = createDateTime("modDate", java.time.LocalDateTime.class);
 
     public final DateTimePath<java.time.LocalDateTime> regDate = createDateTime("regDate", java.time.LocalDateTime.class);

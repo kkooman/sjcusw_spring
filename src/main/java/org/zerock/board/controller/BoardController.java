@@ -24,25 +24,27 @@ public class BoardController {
     private final MemberRepository mmemberRepository;
 
     @GetMapping("/list")
-    public String list(@ModelAttribute PageRequestDTO pageRequestDTO, Model model) {
+    public String list(@ModelAttribute PageRequestDTO requestDTO, Model model) {
 
         PageResultDTO result = new PageResultDTO();
-        result.setDtoList(boardService.getList(pageRequestDTO));
+        result.setDtoList(boardService.getList(requestDTO));
 
         model.addAttribute("result", result);
         return "board/list";
     }
 
     @GetMapping("/read")
-    public String get(@RequestParam Long bno, Model model) {
+    public String get(@RequestParam Long bno, @ModelAttribute PageRequestDTO requestDTO, Model model) {
 
+        model.addAttribute("requestDTO", requestDTO);
         model.addAttribute("dto", boardService.get(bno));
         return "board/read";
     }
 
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(@ModelAttribute PageRequestDTO requestDTO, Model model) {
 
+        model.addAttribute("requestDTO", requestDTO);
         model.addAttribute("member", mmemberRepository.findById(DUMMY_LOGIN_USER).orElseThrow());
         return "board/register";
     }
@@ -55,8 +57,9 @@ public class BoardController {
     }
 
     @GetMapping("/modify")
-    public String modify(@RequestParam Long bno, Model model) {
+    public String modify(@RequestParam Long bno, @ModelAttribute PageRequestDTO requestDTO, Model model) {
 
+        model.addAttribute("requestDTO", requestDTO);
         model.addAttribute("dto", boardService.get(bno));
         return "board/modify";
     }

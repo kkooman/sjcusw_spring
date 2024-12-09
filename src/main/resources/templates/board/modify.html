@@ -9,6 +9,12 @@
 
         <form action="/board/modify" method="post">
 
+            <!--페이지 번호  -->
+            <input type="hidden" name="page" th:value="${requestDTO.page}">
+            <input type="hidden" name="type" th:value="${requestDTO.type}" >
+            <input type="hidden" name="keyword" th:value="${requestDTO.keyword}" >
+
+
             <div class="form-group">
                 <label>Bno</label>
                 <input class="form-control" name="bno" readonly th:value="${dto.bno}" type="text">

@@ -9,6 +9,7 @@ import lombok.ToString;
 @ToString
 public class PageRequestDTO {
 
+    private int page;
     private String type;
     private String keyword;
 
