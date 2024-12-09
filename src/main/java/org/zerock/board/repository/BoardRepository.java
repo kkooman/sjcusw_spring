@@ -10,6 +10,4 @@ import java.util.List;
 
 public interface BoardRepository extends JpaRepository<Board, Long>, QuerydslPredicateExecutor<Board> {
 
-    List<Board> findByTitleContaining(@Param("title") String title);
-
 }

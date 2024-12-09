@@ -5,6 +5,7 @@ import com.querydsl.core.BooleanBuilder;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zerock.board.dto.BoardDTO;
@@ -70,15 +71,12 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public List<BoardListDTO> getList(PageRequestDTO pageRequestDTO) {
-        log.info("title param : {}", pageRequestDTO);
+        log.info("pageRequestDTO param : {}", pageRequestDTO);
 
         QBoard board = QBoard.board;
-        if (pageRequestDTO.getKeyword() == null) {
-            pageRequestDTO.setKeyword("");
-        }
-
         BooleanBuilder booleanBuilder = new BooleanBuilder();
 
+        pageRequestDTO.setKeyword(StringUtils.defaultString(pageRequestDTO.getKeyword()));
         if (StringUtils.isNotEmpty(pageRequestDTO.getKeyword())) {
             if (StringUtils.isBlank(pageRequestDTO.getType())) {
                 pageRequestDTO.setType("t");
@@ -92,7 +90,7 @@ public class BoardServiceImpl implements BoardService {
             }
         }
 
-        Iterable<Board> list = repository.findAll(booleanBuilder);
+        Iterable<Board> list = repository.findAll(booleanBuilder, Sort.by(Sort.Direction.DESC, "bno"));
         return StreamSupport.stream(list.spliterator(), false).map(Board::toListDTO).collect(Collectors.toList());
     }
 
